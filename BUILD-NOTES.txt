@@ -18,3 +18,11 @@ cd Signal-Android
 git checkout 4_64_7
 ./gradlew clean assemblePlayRelease --exclude-task signProductionPlayRelease
 find -name *.apk
+
+
+cd app/build/outputs/apk
+keytool -genkey -v -keystore example.keystore -alias SignalDevel -keyalg RSA -keysize 4096
+jarsigner -verbose -keystore example.keystore \
+    play/release/Signal-play-armeabi-v7a-release-unsigned-4.64.7.1.apk \
+    SignalDevel \
+        && cp -vf play/release/Signal-play-armeabi-v7a-release-{unsigned,signed}-4.64.7.1.apk
