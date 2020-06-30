@@ -15,7 +15,7 @@ public final class RegistrationValues extends SignalStoreValues {
   public synchronized void onFirstEverAppLaunch() {
     getStore().beginWrite()
               .putBoolean(REGISTRATION_COMPLETE, false)
-              .putBoolean(PIN_REQUIRED, true)
+              .putBoolean(PIN_REQUIRED, false)
               .commit();
   }
 
@@ -31,7 +31,7 @@ public final class RegistrationValues extends SignalStoreValues {
 
   @CheckResult
   public synchronized boolean pinWasRequiredAtRegistration() {
-    return getStore().getBoolean(PIN_REQUIRED, false);
+    return false;
   }
 
   @CheckResult

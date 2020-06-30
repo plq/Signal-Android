@@ -21,30 +21,12 @@ class PinsForAllSchedule implements MegaphoneSchedule {
   private final MegaphoneSchedule schedule = new RecurringSchedule(TimeUnit.HOURS.toMillis(2));
 
   static boolean shouldDisplayFullScreen(long firstVisible, long currentTime) {
-    if (!FeatureFlags.pinsForAllMandatory()) {
-      return false;
-    }
-
-    if (firstVisible == 0L) {
-      return false;
-    }
-
-    return currentTime - firstVisible >= TimeUnit.DAYS.toMillis(DAYS_UNTIL_FULLSCREEN);
+    return false;
   }
 
   @Override
   public boolean shouldDisplay(int seenCount, long lastSeen, long firstVisible, long currentTime) {
-    if (!isEnabled()) {
-      return false;
-    }
-
-    if (shouldDisplayFullScreen(firstVisible, currentTime)) {
-      return true;
-    } else {
-      boolean shouldDisplay = schedule.shouldDisplay(seenCount, lastSeen, firstVisible, currentTime);
-      Log.i(TAG, String.format(Locale.ENGLISH, "seenCount: %d,  lastSeen: %d,  firstVisible: %d,  currentTime: %d, result: %b", seenCount, lastSeen, firstVisible, currentTime, shouldDisplay));
-      return shouldDisplay;
-    }
+    return false;
   }
 
   private static boolean isEnabled() {
