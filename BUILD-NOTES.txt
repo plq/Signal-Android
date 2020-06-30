@@ -1,0 +1,20 @@
+mkdir image-build-ctx
+cd image-build-ctx
+docker build --file ../DockerFile --tag signal-android .
+cd ..
+
+docker run \
+    --name signal \
+    --rm \
+    --interactive \
+    --tty \ 
+    --volum e $(pwd)/apk-from-google-play-store:/signal-build/apk-from-google-play-store \
+    --workdir /signal-build \
+    signal-android
+
+# inside docker
+git clone https://github.com/plq/Signal-Android.git
+cd Signal-Android
+git checkout 4_64_7
+./gradlew clean assemblePlayRelease --exclude-task signProductionPlayRelease
+find -name *.apk
