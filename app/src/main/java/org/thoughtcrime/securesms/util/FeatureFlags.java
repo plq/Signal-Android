@@ -204,7 +204,7 @@ public final class FeatureFlags {
 
   /** Safety flag to disable Pins for All Megaphone */
   public static boolean pinsForAllMegaphoneKillSwitch() {
-    return getBoolean(PINS_MEGAPHONE_KILL_SWITCH, false);
+    return true;
   }
 
   /** Safety switch for disabling profile names megaphone */
