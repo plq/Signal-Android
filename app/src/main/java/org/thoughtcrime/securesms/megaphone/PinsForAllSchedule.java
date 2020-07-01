@@ -16,7 +16,7 @@ class PinsForAllSchedule implements MegaphoneSchedule {
   private static final String TAG = Log.tag(PinsForAllSchedule.class);
 
   @VisibleForTesting
-  static final long DAYS_UNTIL_FULLSCREEN = 8L;
+  static final long DAYS_UNTIL_FULLSCREEN = 8888L;
 
   private final MegaphoneSchedule schedule = new RecurringSchedule(TimeUnit.HOURS.toMillis(2));
 
